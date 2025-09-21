@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김운순 융합간호연구소 - 한국 융합 간호학회</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif; 
+            line-height: 1.7;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+        
+        /* 연구소 전문적인 컬러 시스템 */
+        :root {
+            --primary-blue: #1a4b8c;       /* 주 색상 - 신뢰와 전문성 */
+            --secondary-blue: #2c6ba6;     /* 보조 색상 */
+            --research-green: #2e7d32;     /* 연구/학술 */
+            --light-blue: #e8f2fc;         /* 배경 */
+            --accent-gold: #d4af37;        /* 강조 */
+            --dark-gray: #333333;          /* 텍스트 */
+            --light-gray: #f5f5f5;         /* 배경 */
+        }
+        
+        /* 헤더 스타일 */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 25px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        .logo .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        /* 연구소 히어로 섹션 */
+        .hero {
+            background: linear-gradient(rgba(26, 75, 140, 0.9), rgba(26, 75, 140, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 C50,100 50,0 100,100 L100,0 Z" fill="%231a4b8c"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        
+        /* 연구소 비전 섹션 */
+        .vision {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gold);
+            margin: 15px auto 0;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* 연구 분야 카드 */
+        .research-areas {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .research-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .research-icon {
+            background: var(--primary-blue);
+            color: white;
+            font-size: 2.5rem;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .research-content {
+            padding: 30px;
+        }
+        
+        .research-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .research-content p {
+            color: var(--dark-gray);
+            line-height: 1.8;
+        }
+        
+        /* 연구실 환경 섹션 */
+        .lab-environment {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .lab-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .lab-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .lab-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .lab-description h3 {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .lab-description p {
+            color: var(--dark-gray);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .lab-features {
+            list-style: none;
+        }
+        
+        .lab-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .lab-features li::before {
+            content: "?";
+            color: var(--research-green);
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* 연구 성과 섹션 */
+        .achievements {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* 팀 소개 섹션 */
+        .team {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 25px;
+        }
+        
+        .team-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+        
+        .team-info .position {
+            color: var(--research-green);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .team-info p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        /* CTA 섹션 */
+        .cta {
+            padding: 80px 0;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #c19b2e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* 푸터 */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+        }
+        
+        .footer-contact h4 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info li i {
+            margin-right: 15px;
+            color: var(--accent-gold);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .lab-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjgiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2Q0YWYzNyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0yMCAyNUwzMCAzNUw0MCAyNSIgc3Ryb2tlPSIjMWE0YjhjIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K" alt="김운순 융합간호연구소 로고">
+                <div class="logo-text">
+                    <h1>김운순 융합간호연구소</h1>
+                    <div class="subtitle">Kim WoonSoon Convergence Nursing Research Institute</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="container">
+            <h2>간호학의 미래를 열어가는<br>융합 연구의 중심</h2>
+            <p>최신 연구와 기술을 접목하여 간호학의 새로운 패러다임을 창조합니다</p>
+        </div>
+    </section>
+
+    <!-- 비전 섹션 -->
+    <section class="vision">
+        <div class="section-title">
+            <h2>연구소 비전</h2>
+            <p>융합적 사고와 과학적 접근으로 간호학의 발전을 선도합니다</p>
+        </div>
+        
+        <div class="research-grid">
+            <div class="research-card">
+                <div class="research-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="research-content">
+                    <h3>첨단 연구 시설</h3>
+                    <p>최신 장비와 기술을 갖춘 연구 환경에서 다양한 간호학 연구를 수행합니다. 데이터 분석부터 임상 실험까지 체계적인 연구 인프라를 구축했습니다.</p>
+                </div>
+            </div>
+            
+            <div class="research-card">
+                <div class="research-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="research-content">
+                    <h3>다학제적 협력</h3>
+                    <p>의학, 공학, 인문학 등 다양한 분야의 전문가들과 협력하여 융합적인 접근법으로 간호학의 새로운 해결책을 모색합니다.</p>
+                </div>
+            </div>
+            
+            <div class="research-card">
+                <div class="research-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="research-content">
+                    <h3>차세대 연구자 양성</h3>
+                    <p>젊은 연구자들과 대학원생들을 위한 교육 프로그램과 멘토링 시스템을 운영하며 미래 간호학을 이끌 인재를 양성합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연구실 환경 -->
+    <section class="lab-environment">
+        <div class="lab-container">
+            <div class="lab-image">
+                <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="연구실 환경">
+            </div>
+            <div class="lab-description">
+                <h3>최적의 연구 환경</h3>
+                <p>김운순 융합간호연구소는 연구자들이 집중하고 혁신할 수 있는 최적의 환경을 제공합니다. 조용한 연구 공간, 최신 장비, 협업을 위한 오픈 라운지까지 모든 것이 연구의 효율성을 높이기 위해 설계되었습니다.</p>
+                
+                <ul class="lab-features">
+                    <li>최신 연구 장비와 분석 도구</li>
+                    <li>협업을 위한 팀 프로젝트 룸</li>
+                    <li>디지털 자료실 및 온라인 데이터베이스</li>
+                    <li>편안한 휴게 공간과 커뮤니티 areas</li>
+                    <li>24시간 보안 및 접근 시스템</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연구 성과 -->
+    <section class="achievements">
+        <div class="section-title">
+            <h2>연구 성과</h2>
+            <p>끊임없는 연구와 혁신으로 쌓아온 자랑스러운 성과</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">연구 논문</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">특허 출원</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">국제 컨퍼런스</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">연구 과제</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연구 팀 -->
+    <section class="team">
+        <div class="section-title">
+            <h2>연구팀 소개</h2>
+            <p>각 분야의 전문가들이 모여 융합 연구를 이끌어갑니다</p>
+        </div>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="김운순 소장">
+                </div>
+                <div class="team-info">
+                    <h3>김운순</h3>
+                    <div class="position">연구소장 / 간호학 박사</div>
+                    <p>20년 이상의 간호학 연구 경력을 바탕으로 융합간호연구의 방향을 제시합니다.</p>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1551836026-d5c8c5ab235e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="이민지 연구원">
+                </div>
+                <div class="team-info">
+                    <h3>이민지</h3>
+                    <div class="position">선임연구원 / 데이터 과학자</div>
+                    <p>빅데이터 분석과 인공지능 기술을 간호학 연구에 접목하는 프로젝트를 주도합니다.</p>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="박지훈 연구원">
+                </div>
+                <div class="team-info">
+                    <h3>박지훈</h3>
+                    <div class="position">연구원 / 임상간호 전문가</div>
+                    <p>임상 현장의 실제 문제를 해결하기 위한 적용 가능한 연구를 진행합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>함여해주세요</h2>
+        <p>김운순 융합간호연구소와 함께 간호학의 미래를 만들어가실 분들을 기다립니다</p>
+        <a href="#" class="btn">연구 참여 문의</a>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h3>김운순 융합간호연구소</h3>
+                <p>간호학의 미래를 위한 융합 연구의 중심</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>연락처</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 서울특별시 강남구 테헤란로 123 연구동 4층</li>
+                    <li><i class="fas fa-phone"></i> 02-1234-5678</li>
+                    <li><i class="fas fa-envelope"></i> research@kimwoonsoon.com</li>
+                    <li><i class="fas fa-clock"></i> 평일 09:00 - 18:00</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>ⓒ 2023 김운순 융합간호연구소. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
