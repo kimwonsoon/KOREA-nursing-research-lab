@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국융합간호학회</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #4e8aeb;
+            --accent-color: #e8f1ff;
+            --text-color: #333;
+            --light-gray: #f5f7fa;
+            --dark-gray: #666;
+            --white: #fff;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+        }
+        
+        /* 헤더 스타일 */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+        }
+        
+        .nav-item {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* 히어로 섹션 */
+        .hero {
+            background: linear-gradient(rgba(26, 115, 232, 0.8), rgba(26, 115, 232, 0.9)), url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80') no-repeat center center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* 소개 섹션 */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 주요 활동 섹션 */
+        .activities {
+            background-color: var(--white);
+        }
+        
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .activity-card {
+            background-color: var(--light-gray);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .activity-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* 정관 섹션 */
+        .bylaws-container {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .bylaws-chapter {
+            margin-bottom: 30px;
+        }
+        
+        .bylaws-chapter-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        .bylaws-article {
+            margin-bottom: 20px;
+        }
+        
+        .bylaws-article-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-gray);
+        }
+        
+        .bylaws-content {
+            padding-left: 20px;
+        }
+        
+        /* 조직도 섹션 */
+        .organization {
+            background-color: var(--light-gray);
+        }
+        
+        .org-chart {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .org-level {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+        
+        .org-item {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        /* 학회지 섹션 */
+        .journal-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .journal-image {
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .journal-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        /* 뉴스 섹션 */
+        .news {
+            background-color: var(--white);
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .news-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-date {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        /* 연락처 섹션 */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .contact-card {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* 푸터 */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 반응형 스타일 */
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .org-chart {
+                flex-direction: column;
+            }
+            
+            .org-level {
+                margin: 10px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+        }
+        
+        /* 정관 아코디언 스타일 */
+        .accordion {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .active, .accordion:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .accordion::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 1.2rem;
+            float: right;
+        }
+        
+        .active::after {
+            content: '\f106';
+        }
+        
+        .panel {
+            padding: 0 18px;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            margin-bottom: 15px;
+            border-radius: 0 0 5px 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgdmlld0JveD0iMCAwIDUwIDUwIj48Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIyMyIgZmlsbD0iIzFhNzNlOCIvPjxwYXRoIGQ9Ik0yNSA1QzE0IDUgNSAxNCA1IDI1czkgMjAgMjAgMjAgMjAtOSAyMC0yMFMzNiA1IDI1IDV6bTAgMzVjLTggMC0xNS03LTE1LTE1UzE3IDEwIDI1IDEwczE1IDcgMTUgMTUtNyAxNS0xNSAxNXptLTUtMTVoMTB2NUgyMHYtNXoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" alt="로고">
+                    <div class="logo-text">한국융합간호학회</div>
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link">학회소개</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">학회정관</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">학술대회</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">학회지</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">회원안내</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">공지사항</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">연락처</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">한국융합간호학회에 오신 것을 환영합니다</h1>
+            <p class="hero-subtitle">간호학의 다양한 분야를 융합하여 미래 의료 환경을 선도하는 혁신적인 연구와 실천을 지향합니다.</p>
+            <a href="#" class="btn">회원가입 하기</a>
+            <a href="#" class="btn btn-outline">학회소개</a>
+        </div>
+    </section>
+
+    <!-- 소개 섹션 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">학회 소개</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>한국융합간호학회는 2010년에 설립된 이후 간호학의 다양한 분야를 융합하여 미래 의료 환경을 선도하는 혁신적인 연구와 실천을 지향해 왔습니다.</p>
+                    <p>본 학회는 간호 실무, 교육, 연구 및 정책 개발에 기여하고 있으며, 회원 상호 간의 학문적 교류와 협력을 통해 간호학의 발전과 전문성 향상에 기여하고 있습니다.</p>
+                    <p>다양한 학술대회, 워크숍, 연수 프로그램을 통해 회원들의 역량 강화를 지원하고 있으며, 국제적인 교류와 협력도 활발히 진행하고 있습니다.</p>
+                    <a href="#" class="btn">더 알아보기</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="한국융합간호학회 소개 이미지">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 주요 활동 섹션 -->
+    <section class="section activities">
+        <div class="container">
+            <h2 class="section-title">주요 활동</h2>
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <div class="activity-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>학술대회 개최</h3>
+                    <p>연 2회 정기 학술대회를 개최하여 최신 연구 동향과 실무 적용 사례를 공유합니다.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon"><i class="fas fa-book"></i></div>
+                    <h3>학회지 발간</h3>
+                    <p>국제적으로 인정받는 학술지 '융합 간호연구'를 분기별로 발간하고 있습니다.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon"><i class="fas fa-globe-asia"></i></div>
+                    <h3>국제 교류</h3>
+                    <p>해외 유수 간호학회와의 교류 프로그램을 운영하여 글로벌 협력 기회를 제공합니다.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon"><i class="fas fa-users-cog"></i></div>
+                    <h3>전문가 양성</h3>
+                    <p>다양한 연수 프로그램을 통해 차세대 간호 리더와 전문가를 양성합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 정관 섹션 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">학회 정관</h2>
+            <div class="bylaws-container">
+                <button class="accordion">제1장 총칙</button>
+                <div class="panel">
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제1조(명칭)</div>
+                        <div class="bylaws-content">
+                            본회는 "한국융합간호학회"(이하 "학회"라 한다)라 칭한다.
+                        </div>
+                    </div>
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제2조(목적)</div>
+                        <div class="bylaws-content">
+                            본 학회는 간호학 분야의 융합 연구와 학술활동을 증진함으로써 국민건강 증진 및 사회발전에 기여함을 목적으로 한다.
+                        </div>
+                    </div>
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제3조(사무소의 소재지)</div>
+                        <div class="bylaws-content">
+                            본 학회의 주 사무소는 대한민국 내에 둔다.
+                        </div>
+                    </div>
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제4조(사업)</div>
+                        <div class="bylaws-content">
+                            본 학회는 제2조의 목적을 달성하기 위하여 다음의 사업을 수행한다.<br>
+                            ① 학술대회, 세미나, 워크숍 등 개최<br>
+                            ② 학술지, 연구자료 등 발간<br>
+                            ③ 학문 및 정책 연구 지원<br>
+                            ④ 국내외 유관기관과의 협력 및 교류<br>
+                            ⑤ 기타 학회 목적 달성을 위한 사업
+                        </div>
+                    </div>
+                </div>
+
+                <button class="accordion">제2장 회원</button>
+                <div class="panel">
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제5조(회원의 자격 및 종류)</div>
+                        <div class="bylaws-content">
+                            ① 정회원 – 간호학 및 관련 분야 전공자 등 학회 목적에 동의하는 자<br>
+                            ② 준회원 – 간호학 관련 학부생, 연수생 등<br>
+                            ③ 기관회원 – 본 학회의 목적과 사업에 동의하는 단체 및 기관<br>
+                            기타 자격, 가입 및 탈퇴 절차는 별도의 규정에 따름
+                        </div>
+                    </div>
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제6조(권리와 의무)</div>
+                        <div class="bylaws-content">
+                            회원은 학회의 운영 및 활동에 참여할 권리와 의무를 가진다.
+                        </div>
+                    </div>
+                </div>
+
+                <button class="accordion">제3장 임원 및 조직</button>
+                <div class="panel">
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제7조(임원의 종류와 직무)</div>
+                        <div class="bylaws-content">
+                            본 학회는 다음 각 호의 임원을 둔다.<br>
+                            ① 회장 1인<br>
+                            ② 총무 ○인<br>
+                            ③ 이사 ○인<br>
+                            ④ 감사 ○인
+                        </div>
+                    </div>
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제8조(임원의 선임 및 임기)</div>
+                        <div class="bylaws-content">
+                            임원은 총회에서 선출하며, 임기는 2년으로 한다. 연임할 수 있다.
+                        </div>
+                    </div>
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제9조(이사회와 총회)</div>
+                        <div class="bylaws-content">
+                            ① 학회 최고 의결기구로서 총회를 둔다.<br>
+                            ② 이사회는 주요 학회사업 및 운영사항을 심의·의결한다.
+                        </div>
+                    </div>
+                </div>
+
+                <button class="accordion">제4장 재정</button>
+                <div class="panel">
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제10조(재원)</div>
+                        <div class="bylaws-content">
+                            학회의 재원은 회원의 회비, 사업수익, 기부금 및 기타 수입으로 한다.
+                        </div>
+                    </div>
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제11조(회계연도)</div>
+                        <div class="bylaws-content">
+                            학회의 회계년도는 매년 1월 1일부터 12월 31일까지로 한다.
+                        </div>
+                    </div>
+                </div>
+
+                <button class="accordion">제5장 정관의 변경</button>
+                <div class="panel">
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제12조(정관개정)</div>
+                        <div class="bylaws-content">
+                            정관의 변경은 총회 출석 회원 2/3 이상의 찬성으로 한다.
+                        </div>
+                    </div>
+                </div>
+
+                <button class="accordion">제6장 부칙</button>
+                <div class="panel">
+                    <div class="bylaws-article">
+                        <div class="bylaws-article-title">제13조(시행일)</div>
+                        <div class="bylaws-content">
+                            본 정관은 창립총회 의결일로부터 시행한다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 조직도 섹션 -->
+    <section class="section organization">
+        <div class="container">
+            <h2 class="section-title">조직도</h2>
+            <div class="org-chart">
+                <div class="org-level">
+                    <div class="org-item">총회</div>
+                </div>
+                <div class="org-level">
+                    <div class="org-item">이사회</div>
+                </div>
+                <div class="org-level">
+                    <div class="org-item">회장</div>
+                    <div class="org-item">감사</div>
+                </div>
+                <div class="org-level">
+                    <div class="org-item">부회장</div>
+                </div>
+                <div class="org-level">
+                    <div class="org-item">이사</div>
+                    <div class="org-item">총무</div>
+                    <div class="org-item">학술이사</div>
+                    <div class="org-item">국제이사</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 학회지 섹션 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">학회지</h2>
+            <div class="journal-preview">
+                <div class="journal-image">
+                    <img src="https://images.unsplash.com/photo-1584824486539-53bb4646bdbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=550&q=80" alt="융합 간호연구 저널 표지">
+                </div>
+                <div class="journal-info">
+                    <h3>융합 간호연구</h3>
+                    <p>한국융합간호학회의 공식 학술지로, 간호학과 타 학문의 융합 연구를 발표하는 국제적 저널입니다.</p>
+                    <p>KCI 등재지로, 분기별로 발간되며 다양한 간호 분야의 최신 연구 결과를 소개합니다.</p>
+                    <ul>
+                        <li>ISSN: 1234-5678</li>
+                        <li>발행 주기: 분기별</li>
+                        <li>투고 안내: 연중 수시 접수</li>
+                    </ul>
+                    <a href="#" class="btn">최신호 보기</a>
+                    <a href="#" class="btn btn-outline">투고 안내</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 뉴스 섹션 -->
+    <section class="section news">
+        <div class="container">
+            <h2 class="section-title">새소식</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80" alt="2024년 정기 학술대회">
+                    <div class="news-content">
+                        <div class="news-date">2024.03.15</div>
+                        <h3>2024년도 정기 학술대회 안내</h3>
+                        <p>2024년도 정기 학술대회가 5월 15일부터 17일까지 서울 코엑스에서 개최됩니다.</p>
+                        <a href="#">자세히 보기</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80" alt="연구基金 지원">
+                    <div class="news-content">
+                        <div class="news-date">2024.02.28</div>
+                        <h3>2024년도 연구基金 지원 사업 안내</h3>
+                        <p>2024년도 융합 간호학 연구基金 지원 대상자를 모집합니다.</p>
+                        <a href="#">자세히 보기</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80" alt="해외 연수 프로그램">
+                    <div class="news-content">
+                        <div class="news-date">2024.02.10</div>
+                        <h3>2024년도 해외 연수 프로그램 참가자 모집</h3>
+                        <p>미국 존스홉킨스 대학교 간호대학과의 연수 프로그램 참가자를 모집합니다.</p>
+                        <a href="#">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연락처 섹션 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">연락처</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>학회 사무국</h3>
+                    <p>서울특별시 강남구 테헤란로 123</p>
+                    <p>간호학회 빌딩 5층</p>
+                    <p>Tel: 02-1234-5678</p>
+                    <p>Fax: 02-1234-5679</p>
+                    <p>Email: office@convergence-nursing.kr</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-users"></i></div>
+                    <h3>회원 관련 문의</h3>
+                    <p>회원 가입, 회비 납부, 회원 정보 변경</p>
+                    <p>Tel: 02-1234-5680</p>
+                    <p>Email: member@convergence-nursing.kr</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-book"></i></div>
+                    <h3>학술지 투고 문의</h3>
+                    <p>논문 투고, 심사 과정, 게재 문의</p>
+                    <p>Tel: 02-1234-5682</p>
+                    <p>Email: journal@convergence-nursing.kr</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">한국융합간호학회</div>
+                    <p>대표: 홍길동</p>
+                    <p>사업자등록번호: 123-82-45678</p>
+                </div>
+                <div class="footer-links">
+                    <h4>학회 소개</h4>
+                    <ul>
+                        <li><a href="#">설립 목적</a></li>
+                        <li><a href="#">연혁</a></li>
+                        <li><a href="#">조직도</a></li>
+                        <li><a href="#">임원 현황</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>회원 안내</h4>
+                    <ul>
+                        <li><a href="#">회원 가입</a></li>
+                        <li><a href="#">회원 혜택</a></li>
+                        <li><a href="#">회비 납부</a></li>
+                        <li><a href="#">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>관련 사이트</h4>
+                    <ul>
+                        <li><a href="#">한국간호협회</a></li>
+                        <li><a href="#">간호교육평가원</a></li>
+                        <li><a href="#">국제간호협회</a></li>
+                        <li><a href="#">보건복지부</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 한국융합간호학회. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 메뉴 토글 기능
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').class
